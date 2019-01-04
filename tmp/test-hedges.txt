@@ -1,0 +1,33 @@
+[generic] chris-hedges-on-the-ruleless-ness-tearing-apart-our-world-video: Requesting header
+[generic] chris-hedges-on-the-ruleless-ness-tearing-apart-our-world-video: Downloading webpage
+[generic] chris-hedges-on-the-ruleless-ness-tearing-apart-our-world-video: Extracting information
+[download] Downloading playlist: Chris Hedges on the Ruleless-ness Tearing Our World Apart (Video)
+[generic] playlist Chris Hedges on the Ruleless-ness Tearing Our World Apart (Video): Collected 1 video ids (downloading 1 of them)
+[download] Downloading video 1 of 1
+[youtube] HV0cS1TGve4: Downloading webpage
+[youtube] HV0cS1TGve4: Downloading video info webpage
+[info] Available formats for HV0cS1TGve4:
+format code  extension  resolution note
+249          webm       audio only DASH audio   57k , opus @ 50k, 43.44MiB
+250          webm       audio only DASH audio   69k , opus @ 70k, 50.24MiB
+171          webm       audio only DASH audio  117k , vorbis@128k, 80.45MiB
+251          webm       audio only DASH audio  121k , opus @160k, 90.23MiB
+140          m4a        audio only DASH audio  137k , m4a_dash container, mp4a.40.2@128k, 112.17MiB
+160          mp4        256x144    144p  111k , avc1.4d400c, 30fps, video only, 19.62MiB
+278          webm       256x144    144p  135k , webm container, vp9, 30fps, video only, 63.42MiB
+133          mp4        426x240    240p  221k , avc1.4d4015, 30fps, video only, 33.92MiB
+242          webm       426x240    240p  258k , vp9, 30fps, video only, 71.45MiB
+243          webm       640x360    360p  435k , vp9, 30fps, video only, 137.86MiB
+134          mp4        640x360    360p  529k , avc1.4d401e, 30fps, video only, 87.02MiB
+244          webm       854x480    480p  763k , vp9, 30fps, video only, 232.65MiB
+135          mp4        854x480    480p  993k , avc1.4d401f, 30fps, video only, 184.22MiB
+247          webm       1280x720   720p 1516k , vp9, 30fps, video only, 501.11MiB
+136          mp4        1280x720   720p 1711k , avc1.4d401f, 30fps, video only, 385.51MiB
+302          webm       1280x720   720p60 2650k , vp9, 60fps, video only, 874.31MiB
+298          mp4        1280x720   720p60 3471k , avc1.4d4020, 60fps, video only, 639.96MiB
+17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k, 56.58MiB
+36           3gp        320x180    small , mp4v.20.3, mp4a.40.2, 179.39MiB
+18           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k, 319.90MiB
+43           webm       640x360    medium , vp8.0, vorbis@128k, 388.31MiB
+22           mp4        1280x720   hd720 , avc1.64001F, mp4a.40.2@192k (best)
+[download] Finished downloading playlist: Chris Hedges on the Ruleless-ness Tearing Our World Apart (Video)

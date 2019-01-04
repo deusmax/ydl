@@ -1,0 +1,14 @@
+#! /bin/bash
+
+YTUBE_LINK="$1"
+FNAME=$(youtube-dl --restrict-filenames --get-filename -f 18 $YTUBE_LINK)
+YTUBE_DIR=~/Downloads/youtube
+VOL2_DIR=$YTUBE_DIR/volume2
+
+cd $YTUBE_DIR || exit
+youtube-dl --restrict-filenames --no-mtime -f 18 $YTUBE_LINK
+ffmpeg -loglevel warning -i $FNAME -c:v copy -af volume=2.2 $VOL2_DIR/$FNAME
+
+if (( ! $? )) ; then
+    rm -f $FNAME
+fi

@@ -1,0 +1,17 @@
+#! /bin/bash
+
+YTUBE_LINK="$1"
+AUDIO_FORMAT=140  # m4a
+#AUDIO_FORMAT=171  # vorbis
+#AUDIO_FORMAT=250   # opus (webm)
+FNAME=$(youtube-dl --restrict-filenames --get-filename -f $AUDIO_FORMAT $YTUBE_LINK)
+YTUBE_DIR=~/Downloads/youtube
+VOL2_DIR=$YTUBE_DIR/volume2
+
+cd $YTUBE_DIR || return
+youtube-dl --restrict-filenames --no-mtime -f $AUDIO_FORMAT $YTUBE_LINK
+ffmpeg -loglevel warning -i $FNAME -vn -af volume=2.2 $VOL2_DIR/${FNAME%.*}.ogg
+
+if (( ! $? )) ; then
+    rm -f $FNAME
+fi
