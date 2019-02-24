@@ -8,11 +8,11 @@ function ffmpeg-volume2 () {
     ffmpeg -i "$1" -strict -2 -c:v copy -af volume=2.0 "$2"
 }
 
-function youtube-dl-getfilename () {
+function ydl-getfilename () {
     return "$($CMD_BASE --get-filename "$1")"
 }
 
-function youtube-dl-ogg () {
+function ydl-ogg () {
     local dir1
     local vname
     local dlcmd="$CMD_BASE -f 140"   # download m4a
@@ -44,7 +44,7 @@ function youtube-dl-ogg () {
     cd "$dir1" || exit
 }
 
-function youtube-dl-audio () {
+function ydl-audio () {
     local dir1
     local vname
     local dlcmd="$CMD_BASE -f 140"   # download m4a
@@ -81,7 +81,7 @@ function youtube-dl-audio () {
 # -o '%(title)s-%(id)s.%(ext)s'
 # --audio-format m4a
 
-function youtube-dl-video () {
+function ydl-video () {
     local dlcmd='youtube-dl --restrict-filenames -f 18'
     local vname
     vname=$($dlcmd --get-filename "$1")
@@ -89,7 +89,7 @@ function youtube-dl-video () {
     local ext=${vname##*.}
     local oname=$title.$ext
 
-    echo "oname: $oname"
+    # echo "oname: $oname"
     
     $dlcmd --no-mtime "$1"
 
