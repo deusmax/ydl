@@ -7,8 +7,8 @@ if [ -x $(which youtube-dl) ] ; then
     alias ydl-m4a='youtube-dl --restrict-filenames --no-mtime -f 140'
     alias ydl-video='youtube-dl --restrict-filenames --no-mtime -f 43'   # webm
     alias ydl-audio='youtube-dl --restrict-filenames --no-mtime -f 171'  # webm
-    alias youtube-dl-upgrade='sudo -E youtube-dl -U'
-    alias youtube-dl-upgrade-pip='sudo pip install --upgrade youtube-dl'
+    alias ydl-upgrade='sudo -E youtube-dl -U'
+    alias ydl-upgrade-pip='sudo pip install --upgrade youtube-dl'
 fi
 
 # After downloading th video or audio file, the following functions/commands will
