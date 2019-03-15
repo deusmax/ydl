@@ -4,14 +4,38 @@ YTUBE_LINK="$1"
 AUDIO_FORMAT=140  # m4a
 # AUDIO_FORMAT=171  # vorbis
 # AUDIO_FORMAT=250  # opus (webm)
-FNAME=$(youtube-dl --restrict-filenames --get-filename -f $AUDIO_FORMAT $YTUBE_LINK)
-YTUBE_DIR=~/Downloads/youtube
+YTUBE_DIR=~/Downloads/youtubex
 VOL2_DIR=$YTUBE_DIR/volume2
+CMD_YTUBE="youtube-dl --restrict-filenames"
 
-cd $YTUBE_DIR || return
-youtube-dl --restrict-filenames --no-mtime -f $AUDIO_FORMAT $YTUBE_LINK
-ffmpeg -loglevel warning -i $FNAME -vn -af volume=2.2 $VOL2_DIR/${FNAME%.*}.ogg
+cd $YTUBE_DIR || echo "Error: youtube directory '$YTUBE_DIR' not found" && exit 2
 
-if (( ! $? )) ; then
-    rm -f $FNAME
+FNAME=$($CMD_YTUBE --get-filename -f $AUDIO_FORMAT $YTUBE_LINK)
+$CMD_YTUBE --no-mtime -f $AUDIO_FORMAT $YTUBE_LINK
+errNum=$?
+if (( $errNum )) ; then
+    test -f $FNAME && rm -i $FNAME
+    exit $errNum
+fi
+
+# If a VOL2 directory exists, proceed with audio boosting.
+if [[ -d $VOL2_DIR ]] ; then
+    if [[ ! -x $(which ffmpeg) ]] ; then
+        echo "Error: command ffmpeg not found"
+        exit 127
+    fi
+
+    V2_NAME=$VOL2_DIR/${FNAME%.*}.ogg
+    ffmpeg -loglevel warning -i $FNAME -vn -af volume=2.2 $V2_NAME
+    errNum=$?
+    if (( ! $errNum )) ; then
+        echo "All OK - err: $errNum"
+        rm -i $FNAME
+    else
+        echo "Bad thing - err: $errNum"
+        if [[ -f $V2_NAME ]] ; then
+            rm -i $V2_NAME
+        fi
+        exit $errNum
+    fi
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ydl
-if [ -x /usr/local/bin/youtube-dl ] ; then
+if [ -x $(which youtube-dl) ] ; then
     alias ydl-F='youtube-dl -F'
     alias ydl-cmd='youtube-dl --restrict-filenames --no-mtime'
     alias ydl-mp4='youtube-dl --restrict-filenames --no-mtime -f 18'

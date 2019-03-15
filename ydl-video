@@ -1,14 +1,39 @@
 #! /bin/bash
 
 YTUBE_LINK="$1"
-FNAME=$(youtube-dl --restrict-filenames --get-filename -f 18 $YTUBE_LINK)
+VIDEO_FORMAT=18  # mp4
 YTUBE_DIR=~/Downloads/youtube
 VOL2_DIR=$YTUBE_DIR/volume2
+CMD_YTUBE="youtube-dl --restrict-filenames"
 
-cd $YTUBE_DIR || exit
-youtube-dl --restrict-filenames --no-mtime -f 18 $YTUBE_LINK
-ffmpeg -loglevel warning -i $FNAME -c:v copy -af volume=2.2 $VOL2_DIR/$FNAME
+cd $YTUBE_DIR || echo "Error: youtube directory '$YTUBE_DIR' not found" && exit 2
 
-if (( ! $? )) ; then
-    rm -f $FNAME
+FNAME=$($CMD_YTUBE --get-filename -f $VIDEO_FORMAT $YTUBE_LINK)
+$CMD_YTUBE --no-mtime -f $VIDEO_FORMAT $YTUBE_LINK
+errNum=$?
+if (( $errNum )) ; then
+    test -f $FNAME && rm -f $FNAME
+    exit $errNum
+fi
+
+# If a VOL2 directory exists, proceed with audio boosting.
+if [[ -d $VOL2_DIR ]] ; then
+    if [[ ! -x $(which ffmpeg) ]] ; then
+        echo "Error: command ffmpeg not found"
+        exit 127
+    fi
+
+    V2_NAME=$VOL2_DIR/$FNAME
+    ffmpeg -loglevel warning -i $FNAME -c:v copy -af volume=2.2 $V2_NAME
+    errNum=$?
+    if (( ! $errNum )) ; then
+        echo "All OK - err: $errNum"
+        rm -i $FNAME
+    else
+        echo "Bad thing - err: $errNum"
+        if [[ -f $V2_NAME ]] ; then
+            rm -i $V2_NAME
+        fi
+        exit $errNum
+    fi
 fi

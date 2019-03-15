@@ -1,5 +1,8 @@
 #! /bin/bash
 
+#
+# This file is still work-in-progress... some ideas floating.
+#
 DIR_YTUBE=~/Downloads/youtube
 DIR_SAVE=$DIR_YTUBE/volume2
 CMD_BASE='youtube-dl --restrict-filenames '
